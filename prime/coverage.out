@@ -4,11 +4,11 @@ github.com/salmaqnsGH/unit-test/prime/main.go:31.40,34.6 2 0
 github.com/salmaqnsGH/unit-test/prime/main.go:34.6,37.11 2 0
 github.com/salmaqnsGH/unit-test/prime/main.go:42.3,43.11 2 0
 github.com/salmaqnsGH/unit-test/prime/main.go:37.11,40.4 2 0
-github.com/salmaqnsGH/unit-test/prime/main.go:47.58,52.44 2 0
-github.com/salmaqnsGH/unit-test/prime/main.go:57.2,58.16 2 0
-github.com/salmaqnsGH/unit-test/prime/main.go:62.2,64.19 2 0
-github.com/salmaqnsGH/unit-test/prime/main.go:52.44,54.3 1 0
-github.com/salmaqnsGH/unit-test/prime/main.go:58.16,60.3 1 0
+github.com/salmaqnsGH/unit-test/prime/main.go:47.58,52.44 2 1
+github.com/salmaqnsGH/unit-test/prime/main.go:57.2,58.16 2 1
+github.com/salmaqnsGH/unit-test/prime/main.go:62.2,64.19 2 1
+github.com/salmaqnsGH/unit-test/prime/main.go:52.44,54.3 1 1
+github.com/salmaqnsGH/unit-test/prime/main.go:58.16,60.3 1 1
 github.com/salmaqnsGH/unit-test/prime/main.go:67.36,68.22 1 1
 github.com/salmaqnsGH/unit-test/prime/main.go:72.2,72.11 1 1
 github.com/salmaqnsGH/unit-test/prime/main.go:76.2,76.28 1 1
@@ -17,5 +17,5 @@ github.com/salmaqnsGH/unit-test/prime/main.go:68.22,70.3 1 1
 github.com/salmaqnsGH/unit-test/prime/main.go:72.11,74.3 1 1
 github.com/salmaqnsGH/unit-test/prime/main.go:76.28,77.15 1 1
 github.com/salmaqnsGH/unit-test/prime/main.go:77.15,79.4 1 1
-github.com/salmaqnsGH/unit-test/prime/main.go:85.14,90.2 4 0
-github.com/salmaqnsGH/unit-test/prime/main.go:92.15,94.2 1 0
+github.com/salmaqnsGH/unit-test/prime/main.go:85.14,90.2 4 1
+github.com/salmaqnsGH/unit-test/prime/main.go:92.15,94.2 1 1
