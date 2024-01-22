@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"flag"
 	"log"
 	"net/http"
@@ -9,11 +8,12 @@ import (
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/joho/godotenv"
+	"github.com/salmaqnsGH/unit-test/pkg/db"
 )
 
 type application struct {
 	DSN     string
-	DB      *sql.DB
+	DB      db.PostgresConn
 	Session *scs.SessionManager
 }
 
@@ -36,7 +36,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	app.DB = conn
+	app.DB = db.PostgresConn{DB: conn}
 
 	// get a session manager
 	app.Session = getSession()
