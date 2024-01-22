@@ -41,30 +41,6 @@ func Test_application_handlers(t *testing.T) {
 	}
 }
 
-func TestAppHomeOld(t *testing.T) {
-	// create request
-	req, _ := http.NewRequest("GET", "/", nil)
-
-	// add session to context
-	req = addContextAndSessionToRequest(req, app)
-
-	rr := httptest.NewRecorder()
-
-	handler := http.HandlerFunc(app.Home)
-
-	handler.ServeHTTP(rr, req)
-
-	// check status code
-	if rr.Code != http.StatusOK {
-		t.Errorf("TestAppHome returned wrong status code; expected 200 but got %d", rr.Code)
-	}
-
-	body, _ := io.ReadAll(rr.Body)
-	if !strings.Contains(string(body), `<small>From session: `) {
-		t.Error("did not find correct text in html")
-	}
-}
-
 func TestAppHome(t *testing.T) {
 	var tests = []struct {
 		name         string
