@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"flag"
 	"log"
 	"net/http"
@@ -8,6 +9,7 @@ import (
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/joho/godotenv"
+	"github.com/salmaqnsGH/unit-test/pkg/data"
 	"github.com/salmaqnsGH/unit-test/pkg/db"
 )
 
@@ -23,6 +25,9 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+
+	// register data.User{} to session
+	gob.Register(data.User{})
 
 	// set up an app config
 	app := application{}
