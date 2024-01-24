@@ -10,12 +10,13 @@ import (
 	"github.com/alexedwards/scs/v2"
 	"github.com/joho/godotenv"
 	"github.com/salmaqnsGH/unit-test/pkg/data"
-	"github.com/salmaqnsGH/unit-test/pkg/db"
+	"github.com/salmaqnsGH/unit-test/pkg/repository"
+	"github.com/salmaqnsGH/unit-test/pkg/repository/dbrepo"
 )
 
 type application struct {
 	DSN     string
-	DB      db.PostgresConn
+	DB      repository.DatabaseRepo
 	Session *scs.SessionManager
 }
 
@@ -43,7 +44,7 @@ func main() {
 
 	defer conn.Close()
 
-	app.DB = db.PostgresConn{DB: conn}
+	app.DB = &dbrepo.PostgresDBRepo{DB: conn}
 
 	// get a session manager
 	app.Session = getSession()
