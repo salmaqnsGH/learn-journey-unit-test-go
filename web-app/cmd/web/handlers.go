@@ -1,10 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
+	"os"
 	"path"
+	"path/filepath"
 	"time"
 
 	"github.com/salmaqnsGH/unit-test/pkg/data"
@@ -108,4 +112,69 @@ func (app *application) authenticate(r *http.Request, user *data.User, password 
 
 	app.Session.Put(r.Context(), "user", user)
 	return true
+}
+
+func (app *application) UploadProfilePics(w http.ResponseWriter, r *http.Request) {
+	// call a function that extracts a file from an upload (request)
+
+	// get the user from session
+
+	// create a var of type data.UserImage
+
+	// insert the user image into user_images
+
+	// refresh sessional variable "user"
+
+	// redirect back to prfile page
+}
+
+type UploadedFile struct {
+	OriginalFileName string
+	FileSize         int64
+}
+
+func (app *application) UploadFiles(r *http.Request, uploadDir string) ([]*UploadedFile, error) {
+	var uploadedFiles []*UploadedFile
+
+	err := r.ParseMultipartForm(int64(1024 * 1024 * 5))
+	if err != nil {
+		return nil, fmt.Errorf("the uploaded file is too big, and must be less than %d bytes", 1024*1024*5)
+	}
+
+	for _, fHeaders := range r.MultipartForm.File {
+		for _, hdr := range fHeaders {
+			uploadedFiles, err = func(uploadedFiles []*UploadedFile) ([]*UploadedFile, error) {
+				var uploadedFile UploadedFile
+				infile, err := hdr.Open()
+				if err != nil {
+					return nil, err
+				}
+				defer infile.Close()
+
+				uploadedFile.OriginalFileName = hdr.Filename
+
+				var outfile *os.File
+				defer outfile.Close()
+
+				if outfile, err = os.Create(filepath.Join(uploadDir, uploadedFile.OriginalFileName)); nil != err {
+					return nil, err
+				} else {
+					fileSize, err := io.Copy(outfile, infile)
+					if err != nil {
+						return nil, err
+					}
+					uploadedFile.FileSize = fileSize
+				}
+
+				uploadedFiles = append(uploadedFiles, &uploadedFile)
+
+				return uploadedFiles, nil
+			}(uploadedFiles)
+			if err != nil {
+				return uploadedFiles, err
+			}
+		}
+	}
+
+	return uploadedFiles, nil
 }
